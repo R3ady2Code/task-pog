@@ -2,11 +2,10 @@
 
 namespace App\Services;
 
-use App\Models\Call;
+use App\Models\BookCall;
 use Carbon\Carbon;
-use Illuminate\Support\Facades\Log;
 
-class CallService
+class BookCallService
 {
     protected $daysLimit;
     protected $maxHoursPerWeek;
@@ -22,7 +21,7 @@ class CallService
      */
     public function getAvailableSlots($investorId)
     {
-        return Call::getAvailableSlots($investorId, $this->daysLimit, $this->maxHoursPerWeek);
+        return BookCall::getAvailableSlots($investorId, $this->daysLimit, $this->maxHoursPerWeek);
     }
 
     /**
@@ -45,7 +44,7 @@ class CallService
         $start = Carbon::parse($startTime);
         $end = $start->copy()->addMinutes(60);
 
-        return Call::create([
+        return BookCall::create([
             'investor_id' => $investorId,
             'user_id' => $userId,
             'start_time' => $start,
