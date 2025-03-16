@@ -57,7 +57,7 @@ class BookCallService
      */
     public function cancelCall($callId)
     {
-        $call = Call::find($callId);
+        $call = BookCall::find($callId);
         if ($call) {
             $call->delete();
             return true;
